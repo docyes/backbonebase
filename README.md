@@ -8,7 +8,7 @@ There are several special options that, if passed, will be attached directly to 
 
 ##### renderTemplate `view.renderTemplate([data])`
 
-All views can optionally have a template, if defined this function will call the compiled template passing the `data` arguments. If a template is not defined returns an empty string.   
+All views can optionally have a template, if defined this function will call the compiled template passing the `data` arguments. If a `view.template` is not defined returns an empty string.   
 
 ##### renderDeferredTemplate `view.renderDeferredTemplate([data])`
 
