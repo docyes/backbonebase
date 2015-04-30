@@ -9,7 +9,7 @@ There are several special options that, if passed, will be attached directly to 
 
 ##### children `view.children`
 
-A simple object for storing references to a parent views associated child views. `view.children' can be assigned in the constructor of a view or optionally passed in the constructor. The `view.constructor` by default creates an empty object for reference in the `view.initialize` function. 
+A simple object for storing child view references. Child views can be assigned to children in `view.initialize' or optionally passed in the `view.constructor`. By default an empty object for reference is available in the `view.initialize` function.
 
 ##### toClassName `view.toClassName(str)`
 
