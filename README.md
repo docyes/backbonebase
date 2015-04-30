@@ -18,4 +18,8 @@ Defers invoking the `view.renderTemplate` function until the current call stack 
 
 Will postpone the `view.renderTemplate` function execution. Useful for implementing behavior that should only happen after the input has stopped arriving such as rate-limiting.
 
+##### compileTemplate `view.compileTemplate(template)`
+
+Compiles JavaScript templates into functions that can be evaluated for rendering. By default this uses the underscore `_.template(...)`. Override this function to use other template libraries.
+
 
