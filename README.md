@@ -7,7 +7,7 @@ A base Backbone.View Class providing flexible convenience idioms. Features for t
 
 There are several special options that, if passed, will be attached directly to the view: `mid` and `template`. If the view defines an initialize function, it will be called when the view is first created. 
 
-All views have a DOM element `view.el` with additional meta-data set by the constructor; data-cid=`view.cid` and class=`view.toClassName(view.cid)`. The class attribute setting is non-destructive and additive. 
+All views have a DOM element `view.el` with additional meta-data set by the constructor; data-cid and class. The `view.el` data-cid attribute is derived from the `view.cid` and the class attribute is derived from `view.mid` if passed using the `view.toClassName` formatter function. The class attribute setting is additive; non-destructive.
 
 ##### children `view.children`
 
