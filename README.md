@@ -9,7 +9,7 @@ There are several special options that, if passed, will be attached directly to 
 
 ##### toClassName `view.toClassName(str)`
 
-Converts a given string into an html/css safe class selector, 'fooBar_baz' -> foobar-baz. Used primarily by the constructor and the derivation of a `view.el` class attribute based on a passed in or pre-defined `view.mid`. Override this function for customization based on the conventions of `mid` and/or presentation rules.
+Converts a given string into an html/css safe class selector, `'fOo_BaZ' -> foo-baz`. Used primarily by the constructor and the derivation of a `view.el` class attribute based on a passed in or pre-defined `view.mid`. Override this function for customization based on the conventions of `mid` and/or presentation rules.
 
 ##### renderTemplate `view.renderTemplate([data])`
 
