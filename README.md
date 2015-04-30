@@ -7,6 +7,8 @@ A base Backbone.View Class providing flexible convenience idioms. Features for t
 
 There are several special options that, if passed, will be attached directly to the view: `mid` and `template`. If the view defines an initialize function, it will be called when the view is first created. 
 
+All views have a DOM element `view.el` with additional meta-data set by the constructor; data-cid=`view.cid` and class=`view.toClassName(view.cid)`. The class attribute setting is non-destructive and additive. 
+
 ##### children `view.children`
 
 A simple object for storing child `Backbone.View` references. Child views can be assigned to `view.children` in `view.initialize` or optionally passed in the `view.constructor`. By default an empty object for reference is available in the `view.initialize` function.
