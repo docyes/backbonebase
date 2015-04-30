@@ -4,7 +4,12 @@
 A base Backbone.View Class providing flexible convenience idioms. Features for templating (compiling, caching, etc.), introspection, hieararchical views and consistent class name derivation.
 
 ##### constructor / initialize `new View([options])`
+
 There are several special options that, if passed, will be attached directly to the view: `mid` and `template`. If the view defines an initialize function, it will be called when the view is first created. 
+
+##### toClassName `view.toClassName(str)`
+
+Converts a given string into an html/css safe class selector, 'fooBar_baz' -> foobar-baz. Used primarily by the constructor and the derivation of a `view.el` class attribute based on a passed in or pre-defined `view.mid`. Override this function for customization based on the conventions of `mid` and/or presentation rules.
 
 ##### renderTemplate `view.renderTemplate([data])`
 
