@@ -9,7 +9,7 @@ There are several special options that, if passed, will be attached directly to 
 
 ##### children `view.children`
 
-A simple object for storing child view references. Child views can be assigned to children in `view.initialize' or optionally passed in the `view.constructor`. By default an empty object for reference is available in the `view.initialize` function.
+A simple object for storing child `Backbone.View` references. Child views can be assigned to `view.children` in `view.initialize' or optionally passed in the `view.constructor`. By default an empty object for reference is available in the `view.initialize` function.
 
 ##### toClassName `view.toClassName(str)`
 
