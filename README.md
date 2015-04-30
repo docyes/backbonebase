@@ -13,7 +13,7 @@ All views have a DOM element `view.el` with additional meta-data set by the cons
 <div data-cid="view1" data-mid="views/MyView" class="views-myview"></div>
 ```
 
-`data-cid` is derived from `view.cid`, `data-mid` from `view.mid` and `class` from `view.mid` using the `view.toClassName` formatting function. The `data-mid` and `class` are optionally created only if `view.mid` is defined. The class attribute setting is additive; non-destructive.
+`data-cid` is derived from `view.cid`, `data-mid` from `view.mid` and `class` from `view.mid` using the `view.toClassName` formatting function. The `data-mid` and `class` attributes are optionally created only if `view.mid` is defined. The class attribute setting is additive; non-destructive.
 
 ##### children `view.children`
 
