@@ -12,10 +12,10 @@ All views can optionally have a template, if defined this function will call the
 
 ##### renderDeferredTemplate `view.renderDeferredTemplate([data])`
 
-Defers invoking the renderTemplate function until the current call stack has cleared, similar to using setTimeout with a delay of 0.
+Defers invoking the `view.renderTemplate` function until the current call stack has cleared, similar to using setTimeout with a delay of 0.
 
 ##### renderDebouncedTemplate `view.renderDebouncedTemplate([data])`
 
-Will postpone the renderTemplate function execution. Useful for implementing behavior that should only happen after the input has stopped arriving such as rate-limiting.
+Will postpone the `view.renderTemplate` function execution. Useful for implementing behavior that should only happen after the input has stopped arriving such as rate-limiting.
 
 
