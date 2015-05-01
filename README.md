@@ -15,15 +15,26 @@ All views have a DOM element `view.el` with additional meta-data set by the cons
 var view = new BaseView({mid: 'views/MyView'});
 $(body).append(view.render().el)
 ```
-
+Results in...
 ```html
 <div data-cid="view1" data-mid="views/MyView" class="views-myview"></div>
 ```
 
-
 ##### children `view.children`
 
 A simple object for storing child `Backbone.View` references. Child views can be assigned to `view.children` in `view.initialize` or optionally passed in the `view.constructor`. By default an empty object for reference is available in the `view.initialize` function.
+
+```js
+var View = BaseView.extend({
+    initialize: function() {
+        this.children.child = new Backbone.View();  
+    }
+});
+```
+OR
+```js
+var View = BaseView.extend({children: {child: new Backbone.View()}});
+```
 
 ##### toClassName `view.toClassName(str)`
 
