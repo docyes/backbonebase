@@ -17,7 +17,7 @@
         ok(viewPassedChildConstructorTest.children.child instanceof Backbone.View, 'child view created in constructor is correct');
         ok(viewPassedChildConstructorTest.children.child2 instanceof ViewChild, 'child view passed in constructor is correct');
     });
-    test('template', 13, function() {
+    test('template', 15, function() {
         viewNoTemplateTest = new BaseView();
         strictEqual(viewNoTemplateTest.template, undefined, 'no view template defined');
 
@@ -52,5 +52,13 @@
 
         var simpleViewDataCid = new BaseView();
         strictEqual(simpleViewDataCid.cid, simpleViewDataCid.$el.attr('data-cid'), 'View element data-cid matches view instance cid attribute');
+    
+        var viewWithTemplate = new ViewWithTemplate();
+        var spyOnRenderTemplateSpy = sinon.spy();
+        //viewWithTemplate.on('render:template', function(){debugger});
+        viewWithTemplate.on('render:template', spyOnRenderTemplateSpy);
+        viewWithTemplate.renderTemplate('foo', 'bar');
+        ok(spyOnRenderTemplateSpy.calledOnce, 'render:template event fires');
+        ok(spyOnRenderTemplateSpy.calledWithExactly(viewWithTemplate, 'a', spyOnRenderTemplateSpy.args[0]), 'render:template callback called with expected arguments');
     });
 })();
