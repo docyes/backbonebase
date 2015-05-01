@@ -9,8 +9,8 @@
         // Next for Node.js or CommonJS. jQuery may not be needed as a module.
     } else if (typeof exports !== 'undefined') {
         var _ = require('underscore'),
-        $ = require('jquery'),
-        Backbone = require('backbone');
+            $ = require('jquery'),
+            Backbone = require('backbone');
         factory(root, exports, _, $, Backbone);
         // Finally, as a browser global.
     } else {
