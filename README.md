@@ -69,6 +69,12 @@ Will postpone the `view.renderTemplate` function execution. Useful for implement
 
 Compiles JavaScript templates into functions that can be evaluated for rendering. By default this uses the underscore `_.template(...)`. Override this function to use other template libraries.
 
+```js
+compileTemplate: function(template) {
+    return Handlebars.compile(template);
+}
+```
+
 ##### updateTemplate `view.updateTemplate(template, options)`
 
 Set an internal template reference and compile into a callable function. By default `template` is compared to `view.template` compiling only when changed but can be override with `{compile: true}`.
