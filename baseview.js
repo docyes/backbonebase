@@ -37,6 +37,12 @@
             return className.toLowerCase().replace(/\//g, '-').replace(/\_/g, '');
         },
         
+        invokeChildren: function(methodName) {
+            _.each(this.children, function(child) {
+                child[methodName].apply(child, Array.prototype.slice.call(arguments, 1));    
+            });
+        },
+         
         updateTemplate: function(template, options) {
             options || (options = {});
             _.defaults(options, {compile: true, template: template}); 
@@ -62,10 +68,6 @@
                 this._renderDebouncedTemplate = _.debounce(this.renderTemplate.bind(this));
             }
             this._renderDebouncedTemplate.apply(this, arguments);
-        },
-        
-        render: function() {
-            return this;
         },
         
         // Internal method to set an internal template reference and compile a template into 

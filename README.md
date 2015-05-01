@@ -63,4 +63,10 @@ Compiles JavaScript templates into functions that can be evaluated for rendering
 
 ##### updateTemplate `view.updateTemplate(template, options)`
 
-Set an internal template reference and compile into a callable function. By default `template` is compared to `view.template` compiling only when changed but can be override with `{compile: true}`. 
+Set an internal template reference and compile into a callable function. By default `template` is compared to `view.template` compiling only when changed but can be override with `{compile: true}`.
+
+##### invokeChildren `view.invokeChildren(methodName, *arguments)`
+
+Calls the method named by methodName on each child in the `view.children`. Any extra arguments passed to invoke will be forwarded on to the method invocation. Will call n-deep in the tree of associated `BaseView` children.
+
+ 
