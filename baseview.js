@@ -48,8 +48,9 @@
         },
         
         renderTemplate: function() {
-            var template = this._renderTemplate ? this._renderTemplate.apply(null, arguments) : '';
-            return template;
+            var interpolated = this._renderTemplate ? this._renderTemplate.apply(null, arguments) : '';
+            this.trigger('render:template', this, interpolated, arguments);
+            return interpolated;
         },
         
         renderDeferredTemplate: function() {

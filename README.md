@@ -20,6 +20,11 @@ Results in...
 <div data-cid="view1" data-mid="views/MyView" class="views-myview"></div>
 ```
 
+##### Catalog of Events 
+Here's the complete list of built-in BaseView events, with arguments.
+
+* **"render:template"** (view, interpolated, arguments) -- when renderTemplate has been called; capturing the rendered output. Useful when using async `view.deferredTemplate` and `view.debouncedTemplate` functions.
+
 ##### children `view.children`
 
 A simple object for storing child `Backbone.View` references. Child views can be assigned to `view.children` in `view.initialize` or optionally passed in the `view.constructor`. By default an empty object for reference is available in the `view.initialize` function.
