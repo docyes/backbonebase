@@ -57,6 +57,16 @@ Converts a given string into an html/css safe class selector, `'fOo_BaZ' -> foo-
 
 All views can optionally have a template, if defined this function will call the compiled template passing the `data` arguments. If a `view.template` is not defined returns an empty string.   
 
+```js
+var View = BaseView.extend({
+    template: '<%- time %>',
+    render: function() {
+        this.$el.html(this.renderTemplate({time: new Date().getTime()});
+        return this;
+    }
+);
+```
+
 ##### renderDeferredTemplate `view.renderDeferredTemplate([data])`
 
 Defers invoking the `view.renderTemplate` function until the current call stack has cleared, similar to using setTimeout with a delay of 0.
