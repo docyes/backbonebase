@@ -24,6 +24,8 @@
             options || (options = {});
             _.extend(this, _.pick(options, viewOptions));
             this.children = options.children || {};
+            this.collections = options.collections || {};
+            this.models = options.models || {};
             this._prepareTemplate(options)
             Backbone.View.apply(this, arguments);
             this.$el.attr('data-cid', this.cid);
