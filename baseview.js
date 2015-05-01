@@ -48,7 +48,7 @@
         },
         
         renderTemplate: function() {
-            var interpolated = this._renderTemplate ? this._renderTemplate.apply(null, arguments) : '';
+            var interpolated = this._compiledTemplate ? this._compiledTemplate.apply(null, arguments) : '';
             this.trigger('render:template', this, interpolated, arguments);
             return interpolated;
         },
@@ -77,8 +77,8 @@
                 this.template = template;
                 options.compile = true;
             }
-            if (this.template && (options.compile || !this._renderTemplate)) {
-                this._renderTemplate = this.compileTemplate(this.template);
+            if (this.template && (options.compile || !this._compiledTemplate)) {
+                this._compiledTemplate = this.compileTemplate(this.template);
             }
         }
         
