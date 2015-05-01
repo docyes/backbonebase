@@ -64,7 +64,7 @@ var View = BaseView.extend({
         this.$el.html(this.renderTemplate({time: new Date().getTime()});
         return this;
     }
-);
+});
 ```
 
 ##### renderDeferredTemplate `view.renderDeferredTemplate([data])`
