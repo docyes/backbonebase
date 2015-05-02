@@ -62,7 +62,7 @@
         },
         
         renderDeferredTemplate: function() {
-            _.defer(this.renderTemplate.bind(this), arguments);
+            _.defer.apply(null, [this.renderTemplate.bind(this)].concat(Array.prototype.slice.call(arguments)));
         },
         
         renderDebouncedTemplate: function() {
