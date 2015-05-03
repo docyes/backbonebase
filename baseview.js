@@ -31,12 +31,13 @@
         },
        
         _ensureElement: function() {
-            if (this.el) {
-                return;
-            }
-            var mid = _.result(this, 'mid'),
+            var el = this.el,
+                mid = _.result(this, 'mid'),
                 attributes = {};
             Backbone.View.prototype._ensureElement.apply(this, arguments);
+            if (el) {
+                return;   
+            } 
             attributes['data-cid'] = this.cid;
             if (mid) {
                 attributes['data-mid'] = mid;
