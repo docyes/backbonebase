@@ -50,15 +50,9 @@
             return className.toLowerCase().replace(/\//g, '-').replace(/\_/g, '');
         },
         
-        invokeChildren: function(methodName) {
-            _.each(this.children, function(child) {
-                child[methodName].apply(child, Array.prototype.slice.call(arguments, 1));    
-            });
-        },
-        
         remove: function() {
             Backbone.View.prototype.remove.apply(this, arguments);
-            this.invokeChildren('remove');
+            this.invoke('remove');
         },
 
         compileTemplate: function(str) {
@@ -97,7 +91,7 @@
     //List of view options to be merged as properties.
     var viewOptions = ['template', 'mid'];
     
-    var childMethods = ['keys', 'values', 'pairs', 'pick', 'omit', 'defaults', 'clone', 'tap', 'has', 'propertyOf', 'isEmpty'];
+    var childMethods = ['each', 'where', 'findWhere', 'invoke', 'pluck', 'size', 'keys', 'values', 'pairs', 'pick', 'omit', 'defaults', 'clone', 'tap', 'has', 'propertyOf', 'isEmpty'];
     _.each(childMethods, function(method) {
         if (!_[method]) {
             return;

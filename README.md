@@ -99,6 +99,12 @@ compileTemplate: function(template) {
 
 BaseView proxies to Underscore.js to provide many iteration functions on `view.children`. They aren't all documented here, but you can take a look at the Underscore documentation for the full details...
 
+* each
+* where
+* findWhere
+* invoke
+* pluck
+* size
 * keys
 * values
 * pairs
