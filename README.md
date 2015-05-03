@@ -97,6 +97,6 @@ compileTemplate: function(template) {
 
 ##### invokeChildren `view.invokeChildren(methodName, *arguments)`
 
-Calls the method named by methodName on each child in the `view.children`. Any extra arguments passed to invoke will be forwarded on to the method invocation. Will call n-deep in the tree of associated `BaseView` children.
+Calls the method named by methodName on each child in the `view.children`. Any extra arguments passed to invoke will be forwarded on to the method invocation.
 
  
