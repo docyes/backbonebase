@@ -28,13 +28,23 @@
             this.models = options.models || {};
             this.setTemplate(this.template || '');
             Backbone.View.apply(this, arguments);
-            this.$el.attr('data-cid', this.cid);
-            if (this.mid) {
-                this.$el.addClass(this.toClassName(this.mid));
-                this.$el.attr('data-mid', this.mid);
-            }
         },
-        
+       
+        _ensureElement: function() {
+            if (this.el) {
+                return;
+            }
+            var mid = _.result(this, 'mid'),
+                attributes = {};
+            Backbone.View.prototype._ensureElement.apply(this, arguments);
+            attributes['data-cid'] = this.cid;
+            if (mid) {
+                attributes['data-mid'] = mid;
+                this.$el.addClass(this.toClassName(mid));
+            }
+            this.$el.attr(attributes);
+        },
+
         toClassName: function(className) {
             return className.toLowerCase().replace(/\//g, '-').replace(/\_/g, '');
         },
