@@ -63,6 +63,16 @@ A cached compiled template function for the view's template. A handy reference i
 
 Set an internal template reference `view.template` and compile into a callable function `view.ctemplate`.
 
+##### compileTemplate `view.compileTemplate(template)`
+
+Compiles JavaScript templates into functions that can be evaluated for rendering. By default this uses the underscore `_.template(...)`. Override this function to use other template libraries.
+
+```js
+compileTemplate: function(template) {
+    return Handlebars.compile(template);
+}
+```
+
 ##### renderTemplate `view.renderTemplate([data])`
 
 All views can optionally have a template, if defined this function will call the compiled template passing the `data` arguments. If a `view.template` is not defined returns an empty string.   
@@ -85,20 +95,6 @@ Defers invoking the `view.renderTemplate` function until the current call stack 
 
 Will postpone the `view.renderTemplate` function execution. Useful for implementing behavior that should only happen after the input has stopped arriving such as rate-limiting.
 
-##### compileTemplate `view.compileTemplate(template)`
-
-Compiles JavaScript templates into functions that can be evaluated for rendering. By default this uses the underscore `_.template(...)`. Override this function to use other template libraries.
-
-```js
-compileTemplate: function(template) {
-    return Handlebars.compile(template);
-}
-```
-
-##### remove `view.remove()`
-
-Removes a view from the DOM, and calls stopListening to remove any bound events that the view has listenTo'd. Aditionally invokes remove on all `view.children`.
-
 ##### Underscore Methods
 
 BaseView proxies to Underscore.js to provide many iteration functions on `view.children`. They aren't all documented here, but you can take a look at the Underscore documentation for the full details...
@@ -120,4 +116,9 @@ BaseView proxies to Underscore.js to provide many iteration functions on `view.c
 * has
 * propertyOf
 * isEmpty
+
+##### remove `view.remove()`
+
+Removes a view from the DOM, and calls stopListening to remove any bound events that the view has listenTo'd. Aditionally invokes remove on all `view.children`.
+
 
