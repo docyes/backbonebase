@@ -85,9 +85,9 @@ compileTemplate: function(template) {
 }
 ```
 
-##### setTemplate `view.setTemplate(template, options)`
+##### setTemplate `view.setTemplate(template)`
 
-Set an internal template reference and compile into a callable function. By default `template` is compared to `view.template` compiling only when changed but can be override with `{compile: true}`.
+Set an internal template reference `view.template` and compile into a callable function `view.ctemplate`.
 
 ##### invokeChildren `view.invokeChildren(methodName, *arguments)`
 
