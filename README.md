@@ -53,6 +53,16 @@ A simple object for storing multiple `Backbone.Model` references. Child models c
 
 Converts a given string into an html/css safe class selector, `'fOo_BaZ' -> foo-baz`. Used primarily by the constructor and the derivation of a `view.el` class attribute based on a passed in or pre-defined `view.mid`. Override this function for customization based on the conventions of `mid` and/or presentation rules.
 
+##### template `view.template`
+All views have a template at all times (the template property). If not specified template is an empty string.
+
+##### ctemplate `view.ctemplate`
+A cached compiled template function for the view's template. A handy reference instead of re-compiling the template all the time.
+
+##### setTemplate `view.setTemplate(template)`
+
+Set an internal template reference `view.template` and compile into a callable function `view.ctemplate`.
+
 ##### renderTemplate `view.renderTemplate([data])`
 
 All views can optionally have a template, if defined this function will call the compiled template passing the `data` arguments. If a `view.template` is not defined returns an empty string.   
@@ -84,10 +94,6 @@ compileTemplate: function(template) {
     return Handlebars.compile(template);
 }
 ```
-
-##### setTemplate `view.setTemplate(template)`
-
-Set an internal template reference `view.template` and compile into a callable function `view.ctemplate`.
 
 ##### invokeChildren `view.invokeChildren(methodName, *arguments)`
 
