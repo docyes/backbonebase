@@ -17,7 +17,7 @@
         ok(viewPassedChildConstructorTest.children.child instanceof Backbone.View, 'child view created in constructor is correct');
         ok(viewPassedChildConstructorTest.children.child2 instanceof ViewChild, 'child view passed in constructor is correct');
     });
-    test('template', 21, function() {
+    test('template', 25, function() {
         viewNoTemplateTest = new BaseView();
         strictEqual(viewNoTemplateTest.template, '', 'no view template defined defaults to empty string');
 
@@ -60,7 +60,7 @@
         ok(spyOnRenderTemplateSpy.calledOnce, 'render:template event fires');
         ok(spyOnRenderTemplateSpy.calledWithMatch(viewWithTemplate, 'a'), 'render:template callback called with expected arguments');
         strictEqual(spyOnRenderTemplateSpy.args[0][2][0], 'foo', 'renderTemplate called with matching first argument');
-         strictEqual(spyOnRenderTemplateSpy.args[0][2][1], 'bar', 'renderTemplate called with matching second argument');
+        strictEqual(spyOnRenderTemplateSpy.args[0][2][1], 'bar', 'renderTemplate called with matching second argument');
         
         var viewWithTemplate = new ViewWithTemplate();
         var spyOnRenderTemplateSpy = sinon.spy();
@@ -74,6 +74,19 @@
         strictEqual(spyOnRenderTemplateSpy.args[0][2][0], 'foo', 'renderTemplate called with matching first argument');
         strictEqual(spyOnRenderTemplateSpy.args[0][2][1], 'bar', 'renderTemplate called with matching second argument');
         clock.restore();
-         
+
+        var viewWithTemplate = new ViewWithTemplate();
+        var spyOnRenderTemplateSpy = sinon.spy();
+        var clock = sinon.useFakeTimers();
+        viewWithTemplate.on('render:template', spyOnRenderTemplateSpy);
+        viewWithTemplate.renderDebouncedTemplate('bar', 'foo');
+        viewWithTemplate.renderDebouncedTemplate('foo', 'bar');
+        clock.tick(1);
+        clock.restore();
+        ok(spyOnRenderTemplateSpy.calledOnce, 'render:template event fires');
+        ok(spyOnRenderTemplateSpy.calledWithMatch(viewWithTemplate, 'a'), 'render:template callback called with expected arguments');
+        strictEqual(spyOnRenderTemplateSpy.args[0][2][0], 'foo', 'renderTemplate called with matching first argument');
+        strictEqual(spyOnRenderTemplateSpy.args[0][2][1], 'bar', 'renderTemplate called with matching second argument');
+        clock.restore();
     });
 })();
