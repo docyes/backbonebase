@@ -23,7 +23,7 @@ Results in...
 ##### Catalog of Events 
 Here's the complete list of built-in BaseView events, with arguments.
 
-* **"render:template"** (view, interpolated, arguments) -- when renderTemplate has been called; capturing the rendered output. Useful when using async `view.deferredTemplate` and `view.debouncedTemplate` functions.
+* **"render:template"** (view, interpolated, arguments) -- when renderTemplate has been called; capturing the interpolated rendered output. Useful when using async `view.renderTemplateDefer` and `view.renderTemplateDebounce` functions.
 
 ##### children `view.children`
 
