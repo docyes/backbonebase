@@ -85,7 +85,7 @@ compileTemplate: function(template) {
 }
 ```
 
-##### updateTemplate `view.updateTemplate(template, options)`
+##### setTemplate `view.setTemplate(template, options)`
 
 Set an internal template reference and compile into a callable function. By default `template` is compared to `view.template` compiling only when changed but can be override with `{compile: true}`.
 

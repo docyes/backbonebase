@@ -19,7 +19,7 @@
     });
     test('template', 21, function() {
         viewNoTemplateTest = new BaseView();
-        strictEqual(viewNoTemplateTest.template, undefined, 'no view template defined');
+        strictEqual(viewNoTemplateTest.template, '', 'no view template defined defaults to empty string');
 
         viewTemplateConstructorTest = new BaseView({template: 'a'});
         strictEqual(viewTemplateConstructorTest.template, 'a', 'template passed in constructor');

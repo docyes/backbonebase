@@ -26,7 +26,7 @@
             this.children = options.children || {};
             this.collections = options.collections || {};
             this.models = options.models || {};
-            this._prepareTemplate(options)
+            this.setTemplate(this.template || '');
             Backbone.View.apply(this, arguments);
             this.$el.attr('data-cid', this.cid);
             if (this.mid) {
@@ -45,18 +45,12 @@
             });
         },
          
-        updateTemplate: function(template, options) {
-            options || (options = {});
-            _.defaults(options, {compile: true, template: template}); 
-            this._prepareTemplate(options);
-        },
-        
         compileTemplate: function(str) {
             return _.template(str)
         },
         
         renderTemplate: function() {
-            var interpolated = this._compiledTemplate ? this._compiledTemplate.apply(null, arguments) : '';
+            var interpolated = this.ctemplate.apply(null, arguments);
             this.trigger('render:template', this, interpolated, arguments);
             return interpolated;
         },
@@ -74,16 +68,9 @@
         
         // Internal method to set an internal template reference and compile a template into 
         // callable function.
-        _prepareTemplate: function(options) {
-            options || (options = {});
-            var template = options.template;
-            if (template && template !== this.template) {
-                this.template = template;
-                options.compile = true;
-            }
-            if (this.template && (options.compile || !this._compiledTemplate)) {
-                this._compiledTemplate = this.compileTemplate(this.template);
-            }
+        setTemplate: function(template) {
+            this.ctemplate = this.compileTemplate(template);
+            this.template = template;
         }
         
     });
