@@ -54,7 +54,12 @@
                 child[methodName].apply(child, Array.prototype.slice.call(arguments, 1));    
             });
         },
-         
+        
+        remove: function() {
+            Backbone.View.prototype.remove.apply(this, arguments);
+            this.invokeChildren('remove');
+        },
+
         compileTemplate: function(str) {
             return _.template(str)
         },
@@ -85,8 +90,23 @@
         
     });
 
+    var array = [];
+    var slice = array.slice;
+
     //List of view options to be merged as properties.
     var viewOptions = ['template', 'mid'];
+    
+    var childMethods = ['keys', 'values', 'mapObject', 'pairs', 'invert', 'functions', 'findKey', 'pick', 'omit', 'defaults', 'clone', 'tap', 'has', 'propertyOf', 'isMatch', 'isEmpty'];
+    _.each(childMethods, function(method) {
+        if (!_[method]) {
+            return;
+        }
+        BaseView.prototype[method] = function() {
+            var args = slice.call(arguments);
+            args.unshift(this.children);
+            return _[method].apply(_, args);
+        };
+    });
     
     return BaseView;
 }));
