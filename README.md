@@ -101,11 +101,7 @@ BaseView proxies to Underscore.js to provide many iteration functions on `view.c
 
 * keys
 * values
-* mapObject
 * pairs
-* invert
-* functions
-* findKey
 * pick
 * omit
 * defaults
@@ -113,7 +109,6 @@ BaseView proxies to Underscore.js to provide many iteration functions on `view.c
 * tap
 * has
 * propertyOf
-* isMatch
 * isEmpty
 
 ##### invokeChildren `view.invokeChildren(methodName, *arguments)`

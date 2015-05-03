@@ -96,7 +96,7 @@
     //List of view options to be merged as properties.
     var viewOptions = ['template', 'mid'];
     
-    var childMethods = ['keys', 'values', 'mapObject', 'pairs', 'invert', 'functions', 'findKey', 'pick', 'omit', 'defaults', 'clone', 'tap', 'has', 'propertyOf', 'isMatch', 'isEmpty'];
+    var childMethods = ['keys', 'values', 'pairs', 'pick', 'omit', 'defaults', 'clone', 'tap', 'has', 'propertyOf', 'isEmpty'];
     _.each(childMethods, function(method) {
         if (!_[method]) {
             return;
