@@ -65,15 +65,15 @@
             return interpolated;
         },
         
-        renderDeferredTemplate: function() {
+        renderTemplateDefer: function() {
             _.defer.apply(null, [this.renderTemplate.bind(this)].concat(Array.prototype.slice.call(arguments)));
         },
         
-        renderDebouncedTemplate: function() {
-            if (!this._renderDebouncedTemplate) {
-                this._renderDebouncedTemplate = _.debounce(this.renderTemplate.bind(this));
+        renderTemplateDebounce: function() {
+            if (!this._renderTemplateDebounce) {
+                this._renderTemplateDebounce = _.debounce(this.renderTemplate.bind(this));
             }
-            this._renderDebouncedTemplate.apply(this, arguments);
+            this._renderTemplateDebounce.apply(this, arguments);
         },
         
         // Internal method to set an internal template reference and compile a template into 

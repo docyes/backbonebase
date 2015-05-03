@@ -66,7 +66,7 @@
         var spyOnRenderTemplateSpy = sinon.spy();
         var clock = sinon.useFakeTimers();
         viewWithTemplate.on('render:template', spyOnRenderTemplateSpy);
-        viewWithTemplate.renderDeferredTemplate('foo', 'bar');
+        viewWithTemplate.renderTemplateDefer('foo', 'bar');
         clock.tick(1);
         clock.restore();
         ok(spyOnRenderTemplateSpy.calledOnce, 'render:template event fires');
@@ -79,8 +79,8 @@
         var spyOnRenderTemplateSpy = sinon.spy();
         var clock = sinon.useFakeTimers();
         viewWithTemplate.on('render:template', spyOnRenderTemplateSpy);
-        viewWithTemplate.renderDebouncedTemplate('bar', 'foo');
-        viewWithTemplate.renderDebouncedTemplate('foo', 'bar');
+        viewWithTemplate.renderTemplateDebounce('bar', 'foo');
+        viewWithTemplate.renderTemplateDebounce('foo', 'bar');
         clock.tick(1);
         clock.restore();
         ok(spyOnRenderTemplateSpy.calledOnce, 'render:template event fires');

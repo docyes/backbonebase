@@ -77,11 +77,11 @@ var View = BaseView.extend({
 });
 ```
 
-##### renderDeferredTemplate `view.renderDeferredTemplate([data])`
+##### renderTemplateDefer `view.renderTemplateDefer([data])`
 
 Defers invoking the `view.renderTemplate` function until the current call stack has cleared, similar to using setTimeout with a delay of 0.
 
-##### renderDebouncedTemplate `view.renderDebouncedTemplate([data])`
+##### renderTemplateDebounce `view.renderTemplateDebounce([data])`
 
 Will postpone the `view.renderTemplate` function execution. Useful for implementing behavior that should only happen after the input has stopped arriving such as rate-limiting.
 
