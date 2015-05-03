@@ -117,8 +117,3 @@ BaseView proxies to Underscore.js to provide many iteration functions on `view.c
 * propertyOf
 * isEmpty
 
-##### invokeChildren `view.invokeChildren(methodName, *arguments)`
-
-Calls the method named by methodName on each child in the `view.children`. Any extra arguments passed to invoke will be forwarded on to the method invocation.
-
- 
