@@ -76,8 +76,6 @@
             this._renderTemplateDebounce.apply(this, arguments);
         },
         
-        // Internal method to set an internal template reference and compile a template into 
-        // callable function.
         setTemplate: function(template) {
             this.ctemplate = this.compileTemplate(template);
             this.template = template;
