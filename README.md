@@ -95,6 +95,10 @@ compileTemplate: function(template) {
 }
 ```
 
+##### remove `view.remove()`
+
+Removes a view from the DOM, and calls stopListening to remove any bound events that the view has listenTo'd. Aditionally invokes remove on all `view.children`.
+
 ##### Underscore Methods
 
 BaseView proxies to Underscore.js to provide many iteration functions on `view.children`. They aren't all documented here, but you can take a look at the Underscore documentation for the full details...
