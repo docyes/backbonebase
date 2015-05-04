@@ -3,7 +3,7 @@
         setup: function() {
         }
     });
-    test('children', 3, function() {
+    test('children', 5, function() {
         var viewConstructorTest = new BaseView({tagName: 'span'});
         ok(!!viewConstructorTest.children, 'constructor creates children instance member');
         
@@ -16,6 +16,37 @@
         var viewPassedChildConstructorTest = new ViewChild({children: {child2: viewChild}});
         ok(viewPassedChildConstructorTest.children.child instanceof Backbone.View, 'child view created in constructor is correct');
         ok(viewPassedChildConstructorTest.children.child2 instanceof ViewChild, 'child view passed in constructor is correct');
+        
+        var ChildView = BaseView.extend({
+            tagName: 'span',
+            clickedCount: 0,
+            events: {
+                'click a': function(e) {
+                    this.clickedCount++;
+                    e.preventDefault();
+                }
+            },
+            render: function() {
+                this.$el.html('<a href="#">test</a>');
+                return this;
+            }
+        });
+        var ParentView = BaseView.extend({
+            initialize: function() {
+                this.children.child = new ChildView();
+            },
+            render: function() {
+                this.$el.append(this.children.child.render().el);
+                return this;
+            }
+        });
+        var view = new ParentView();
+        document.body.appendChild(view.render().el);
+        view.children.child.$('a').click();
+        equal(view.children.child.clickedCount, 1, 'clicked once');
+        view.remove();
+        view.children.child.$('a').click();
+        equal(view.children.child.clickedCount, 1, 'clicked click ignored');
     });
     test('template', 25, function() {
         viewNoTemplateTest = new BaseView();
