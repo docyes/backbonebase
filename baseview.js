@@ -47,7 +47,7 @@
         },
 
         toClassName: function(className) {
-            return className.toLowerCase().replace(/\//g, '-').replace(/\_/g, '');
+            return className.match(/-?[_a-zA-Z]+[_a-zA-Z0-9-]*/g, '').join('-').replace(/[\/\_]/g, '-').toLowerCase();
         },
         
         remove: function() {

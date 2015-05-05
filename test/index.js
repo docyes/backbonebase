@@ -3,6 +3,24 @@
         setup: function() {
         }
     });
+    test('toClassName', 1, function() {
+        var view = new BaseView();
+        equal(view.toClassName('aB_Cd-e/f**g'), 'ab-cd-e-f-g', 'class name converted to lowercase and _ replaced with hyphens')
+    });
+    test('el attribute extensions', 6, function() {
+        var expectedModuleId = 'Foo_Bar/Bar-Foo';
+        var expectedClassName = 'foo-bar-bar-foo';
+        var view = new BaseView();
+        strictEqual(view.toClassName(expectedModuleId), expectedClassName, 'conversion of string to safe class name');
+        var viewWithModuleId = new BaseView({mid: expectedModuleId, className: 'bar'});
+        strictEqual(viewWithModuleId.mid, expectedModuleId, 'Passed in mid is set as instance member');
+        strictEqual(viewWithModuleId.$el.attr('data-mid'), expectedModuleId, 'View element data-mid matches view instance mid attribute');
+        ok(viewWithModuleId.$el.hasClass(expectedClassName), 'View element class was set to value of data-mid');
+        ok(viewWithModuleId.$el.hasClass('bar'), 'View element class argument honored and not destroyed');
+
+        var simpleViewDataCid = new BaseView();
+        strictEqual(simpleViewDataCid.cid, simpleViewDataCid.$el.attr('data-cid'), 'View element data-cid matches view instance cid attribute');
+    });
     test('children', 5, function() {
         var viewConstructorTest = new BaseView({tagName: 'span'});
         ok(!!viewConstructorTest.children, 'constructor creates children instance member');
@@ -48,7 +66,7 @@
         view.children.child.$('a').click();
         equal(view.children.child.clickedCount, 1, 'clicked click ignored');
     });
-    test('template', 25, function() {
+    test('template', 19, function() {
         viewNoTemplateTest = new BaseView();
         strictEqual(viewNoTemplateTest.template, '', 'no view template defined defaults to empty string');
 
@@ -71,19 +89,7 @@
         var viewWithTemplate = new ViewWithTemplate();
         strictEqual(viewWithTemplate.renderTemplate(), 'a', 'calling renderTemplate with an existing template is callable and returns an expected value');
 
-        var expectedModuleId = 'Foo_Bar/Bar-Foo';
-        var expectedClassName = 'foobar-bar-foo';
-        var view = new BaseView();
-        strictEqual(view.toClassName(expectedModuleId), expectedClassName, 'conversion of string to safe class name');
-        var viewWithModuleId = new BaseView({mid: expectedModuleId, className: 'bar'});
-        strictEqual(viewWithModuleId.mid, expectedModuleId, 'Passed in mid is set as instance member');
-        strictEqual(viewWithModuleId.$el.attr('data-mid'), expectedModuleId, 'View element data-mid matches view instance mid attribute');
-        ok(viewWithModuleId.$el.hasClass(expectedClassName), 'View element class was set to value of data-mid');
-        ok(viewWithModuleId.$el.hasClass('bar'), 'View element class argument honored and not destroyed');
-
-        var simpleViewDataCid = new BaseView();
-        strictEqual(simpleViewDataCid.cid, simpleViewDataCid.$el.attr('data-cid'), 'View element data-cid matches view instance cid attribute');
-    
+   
         var viewWithTemplate = new ViewWithTemplate();
         var spyOnRenderTemplateSpy = sinon.spy();
         viewWithTemplate.on('render:template', spyOnRenderTemplateSpy);
