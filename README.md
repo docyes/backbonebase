@@ -57,7 +57,7 @@ Converts a given string into an html/css safe class selector, `'fOo_BaZ' -> foo-
 All views have a template at all times (the template property). If not specified template is an empty string.
 
 ##### ctemplate `view.ctemplate`
-A cached compiled template function for the view's template. A handy reference instead of re-compiling the template all the time.
+A callable template function derived from the compilation of `view.template`. A handy reference instead of re-compiling the template all the time.
 
 ##### setTemplate `view.setTemplate(template)`
 
