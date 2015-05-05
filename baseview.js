@@ -81,12 +81,12 @@
             this.template = template;
         },
         
-        traverse: function(callback, options) {
+        traverse: function(iteratee, options) {
             options || (options = {});
             var view = options.view || this;
             view.each(function(child) {
-                callback.call(this, view, child);
-                this.traverse(callback, {view: child}); 
+                iteratee.call(this, view, child);
+                this.traverse(iteratee, {view: child}); 
             }, this);
         }
 
