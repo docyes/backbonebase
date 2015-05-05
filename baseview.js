@@ -24,8 +24,6 @@
             options || (options = {});
             _.extend(this, _.pick(options, viewOptions));
             this.children = options.children || {};
-            this.collections = options.collections || {};
-            this.models = options.models || {};
             this.setTemplate(this.template || '');
             Backbone.View.apply(this, arguments);
         },

@@ -41,14 +41,6 @@ OR
 var View = BaseView.extend({children: {child: new Backbone.View()}});
 ```
 
-##### collections `view.collections`
-
-A simple object for storing multiple `Backbone.Collection` references. Child collections can be assigned to `view.collections` in `view.initialize` or optionally passed in the `view.constructor`. By default an empty object for reference is available in the `view.initialize` function.
-
-##### models `view.models`
-
-A simple object for storing multiple `Backbone.Model` references. Child models can be assigned to `view.models` in `view.initialize` or optionally passed in the `view.constructor`. By default an empty object for reference is available in the `view.initialize` function.
-
 ##### toClassName `view.toClassName(className)`
 
 Converts a given string into an html/css safe class selector, `'fOo_BaZ' -> foo-baz`. Used primarily by the constructor and the derivation of a `view.el` class attribute based on a passed in or pre-defined `view.mid`. Override this function for customization based on the conventions of `mid` and/or presentation rules.
