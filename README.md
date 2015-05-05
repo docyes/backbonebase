@@ -117,8 +117,7 @@ BaseView proxies to Underscore.js to provide many iteration functions on `view.c
 * propertyOf
 * isEmpty
 
-```
-js
+```js
 view.each(function(child) {
     child.render();
 });
