@@ -127,7 +127,7 @@ view.invoke('remove');
 
 ##### traverse `view.traverse(callback, options)`
 
-Traverse an n-level deep tree of `view.children` starting from the top and working down.
+Traverse a n-level deep tree of `view.children` starting from the top and working down.
 
 ##### remove `view.remove()`
 
