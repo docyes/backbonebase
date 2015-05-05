@@ -117,6 +117,15 @@ BaseView proxies to Underscore.js to provide many iteration functions on `view.c
 * propertyOf
 * isEmpty
 
+```
+js
+view.each(function(child) {
+    child.render();
+});
+
+view.invoke('remove');
+```
+
 ##### remove `view.remove()`
 
 Removes a view from the DOM, and calls stopListening to remove any bound events that the view has listenTo'd. Aditionally invokes remove on all `view.children`.
