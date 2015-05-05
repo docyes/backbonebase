@@ -3,7 +3,7 @@
         setup: function() {
         }
     });
-    test('toClassName', 1, function() {
+    test('class name sanitizer', 1, function() {
         var view = new BaseView();
         equal(view.toClassName('aB_Cd-e/f**g'), 'ab-cd-e-f-g', 'class name converted to lowercase and _ replaced with hyphens')
     });
