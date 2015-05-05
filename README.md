@@ -125,6 +125,10 @@ view.each(function(child) {
 view.invoke('remove');
 ```
 
+##### traverse `view.traverse(callback, options)`
+
+Traverse an n-level deep tree of `view.children` starting from the top and working down.
+
 ##### remove `view.remove()`
 
 Removes a view from the DOM, and calls stopListening to remove any bound events that the view has listenTo'd. Aditionally invokes remove on all `view.children`.
