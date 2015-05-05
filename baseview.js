@@ -79,8 +79,17 @@
         setTemplate: function(template) {
             this.ctemplate = this.compileTemplate(template);
             this.template = template;
-        }
+        },
         
+        traverse: function(callback, options) {
+            options || (options = {});
+            var view = options.view || this;
+            view.each(function(child) {
+                callback.call(this, view, child);
+                this.traverse(callback, {view: child}); 
+            }, this);
+        }
+
     });
 
     var array = [];
