@@ -125,9 +125,9 @@ view.each(function(child) {
 view.invoke('remove');
 ```
 
-##### traverse `view.traverse(callback, options)`
+##### traverse `view.traverse(iteratee, options)`
 
-Traverse a n-level deep tree of `view.children` starting from the top and working down.
+Traverse a n-level deep tree of `view.children` starting from the top and working down, yielding each in turn to an iteratee function. Each invocation of iteratee is called with two arguments: `(parent, child)`.
 
 ##### remove `view.remove()`
 
