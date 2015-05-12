@@ -21,7 +21,7 @@
         var simpleViewDataCid = new BaseView();
         strictEqual(simpleViewDataCid.cid, simpleViewDataCid.$el.attr('data-cid'), 'View element data-cid matches view instance cid attribute');
     });
-    test('children', 5, function() {
+    test('children', 7, function() {
         var viewConstructorTest = new BaseView({tagName: 'span'});
         ok(!!viewConstructorTest.children, 'constructor creates children instance member');
         
@@ -64,7 +64,14 @@
         equal(view.children.child.clickedCount, 1, 'clicked once');
         view.remove();
         view.children.child.$('a').click();
-        equal(view.children.child.clickedCount, 1, 'clicked click ignored');
+        equal(view.children.child.clickedCount, 1, 'remove unbound child listener');
+        
+        var view = new ParentView();
+        
+        view.traverse(function(parent, child) {
+            equal(parent, view, 'is expected parent');
+            equal(child, view.children.child, 'is expected child');
+        });
     });
     test('template', 19, function() {
         viewNoTemplateTest = new BaseView();
