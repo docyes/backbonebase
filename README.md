@@ -119,7 +119,7 @@ view.invoke('remove');
 
 ##### traverse `view.traverse(iteratee, options)`
 
-Traverse a n-level deep tree of `view.children` starting from the top and working down, yielding each in turn to an iteratee function. Each invocation of iteratee is called with two arguments: `(parent, child)`. Use `options.view` if you would like set the root child view to traverse.
+Traverse a n-level deep tree of `view.children` starting from the top and working down, yielding each in turn to an iteratee function. Each invocation of iteratee is called with two arguments: `(parent, child)`. Use `options.view` to select a specific `view.children` view for traversal.
 
 ##### remove `view.remove()`
 
