@@ -113,5 +113,9 @@
         };
     });
     
+    var Model = BackboneBase.Model = Backbone.Model.extend({
+        //TBD.        
+    });
+      
     return BackboneBase;
 }));
