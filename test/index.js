@@ -7,7 +7,7 @@
         var view = new BaseView();
         equal(view.toClassName('aB_Cd-e/f**g'), 'ab-cd-e-f-g', 'class name converted to lowercase and _ replaced with hyphens')
     });
-    test('el attribute extensions', 7, function() {
+    test('el attribute extensions', 9, function() {
         var expectedModuleId = 'Foo_Bar/Bar-Foo';
         var expectedClassName = 'foo-bar-bar-foo';
         var view = new BaseView();
@@ -27,6 +27,11 @@
 
         var simpleViewDataCid = new BaseView();
         strictEqual(simpleViewDataCid.cid, simpleViewDataCid.$el.attr('data-cid'), 'View element data-cid matches view instance cid attribute');
+    
+        var el = document.createElement('div');
+        var simpleView = new BaseView({el: el, mid: 'a'});
+        strictEqual(simpleView.$el.attr('data-mid'), undefined, 'passed in element is not mutated with a data-mid attribute');
+        strictEqual(simpleView.$el.attr('data-cid'), undefined, 'passed in element is not mutated with a data-cid attribute');
     });
     test('children', 7, function() {
         var viewConstructorTest = new BaseView({tagName: 'span'});
