@@ -1,5 +1,5 @@
 (function() {
-    module('BaseView', {
+    module('BackboneBase.View', {
         setup: function() {
         }
     });

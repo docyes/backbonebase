@@ -1,10 +1,11 @@
-# BaseView
+# BackboneBase
 *"All your base are belong to us"*
+A non-framework orientated complimentary set of Backbone extensions providing flexible convenience idioms and utilities.
 
-A base Backbone.View Class providing flexible convenience idioms. Features for templating (compiling, caching, etc.), introspection, hieararchical views and consistent class name derivation.
+## BackboneBase.View
+An extenstion of Backbone.View. Features for templating (compiling, caching, etc.), introspection, hieararchical views and consistent class name derivation.
 
 ##### constructor / initialize `new View([options])`
-
 There are several special options that, if passed, will be attached directly to the view: `mid` and `template`. If the view defines an initialize function, it will be called when the view is first created. 
 
 All views have a DOM element `view.el` with additional meta-data set by the constructor; `data-cid`,`data-mid` and `class`. 
@@ -12,7 +13,7 @@ All views have a DOM element `view.el` with additional meta-data set by the cons
 `data-cid` is derived from `view.cid`, `data-mid` from `view.mid` and `class` from `view.mid` using the `view.toClassName` formatting function. The `data-mid` and `class` attributes are optionally created only if `view.mid` is defined as a value or function. The class attribute setting is additive; non-destructive.
 
 ```js
-var view = new BaseView({mid: 'views/MyView'});
+var view = new BackboneBase.View({mid: 'views/MyView'});
 $(body).append(view.render().el)
 ```
 Results in...
@@ -21,7 +22,7 @@ Results in...
 ```
 
 ##### Catalog of Events 
-Here's the complete list of built-in BaseView events, with arguments.
+Here's the complete list of built-in BackboneBase.View events, with arguments.
 
 * **"render:template"** (view, interpolated, arguments) -- when renderTemplate has been called; capturing the interpolated rendered output. Useful when using async `view.renderTemplateDefer` and `view.renderTemplateDebounce` functions.
 
@@ -30,7 +31,7 @@ Here's the complete list of built-in BaseView events, with arguments.
 A simple object for storing child `Backbone.View` references. Child views can be assigned to `view.children` in `view.initialize` or optionally passed in the `view.constructor`. By default an empty object for reference is available in the `view.initialize` function.
 
 ```js
-var View = BaseView.extend({
+var View = BackboneBase.View.extend({
     initialize: function() {
         this.children.child = new Backbone.View();  
     }
@@ -70,7 +71,7 @@ compileTemplate: function(template) {
 All views can optionally have a template, if defined this function will call the compiled template passing the `data` arguments. If a `view.template` is not defined returns an empty string.   
 
 ```js
-var View = BaseView.extend({
+var View = BackboneBase.View.extend({
     template: '<%- time %>',
     render: function() {
         this.$el.html(this.renderTemplate({time: new Date().getTime()});
