@@ -4,7 +4,7 @@
         define(['underscore', 'jquery', 'backbone', 'exports'], function(_, $, Backbone, exports) {
             // Export global even in AMD case in case this script is loaded with
             // others that may still expect a global Backbone.
-            root.BaseView = factory(root, exports, _, $, Backbone);
+            root.BackboneBase = factory(root, exports, _, $, Backbone);
         });
         // Next for Node.js or CommonJS. jQuery may not be needed as a module.
     } else if (typeof exports !== 'undefined') {
@@ -14,11 +14,18 @@
         factory(root, exports, _, $, Backbone);
         // Finally, as a browser global.
     } else {
-        root.BaseView = factory(root, {}, root._, (root.jQuery || root.Zepto || root.ender || root.$), root.Backbone);
+        root.BackboneBase = factory(root, {}, root._, (root.jQuery || root.Zepto || root.ender || root.$), root.Backbone);
     }
-}(this, function(root, BaseView, _, $, Backbone) {
+}(this, function(root, BackboneBase, _, $, Backbone) {
     
-    var BaseView = Backbone.View.extend({
+    // Create local refernces to array method we'll want to use later.
+    var array = [];
+    var slice = array.slice;
+    
+    // Current version of the library.
+    BackboneBase.VERSION = '0.0.0';
+
+    var View = BackboneBase.View = Backbone.View.extend({
             
         constructor: function(options) {
             options || (options = {});
@@ -90,23 +97,21 @@
 
     });
 
-    var array = [];
-    var slice = array.slice;
-
     //List of view options to be merged as properties.
     var viewOptions = ['template', 'mid'];
     
-    var childMethods = ['each', 'where', 'findWhere', 'invoke', 'pluck', 'size', 'keys', 'values', 'pairs', 'pick', 'omit', 'defaults', 'clone', 'tap', 'has', 'propertyOf', 'isEmpty'];
-    _.each(childMethods, function(method) {
+    // Mix in each Underscore method as a proxy to `View#children`.
+    var viewMethods = ['each', 'where', 'findWhere', 'invoke', 'pluck', 'size', 'keys', 'values', 'pairs', 'pick', 'omit', 'defaults', 'clone', 'tap', 'has', 'propertyOf', 'isEmpty'];
+    _.each(viewMethods, function(method) {
         if (!_[method]) {
             return;
         }
-        BaseView.prototype[method] = function() {
+        View.prototype[method] = function() {
             var args = slice.call(arguments);
             args.unshift(this.children);
             return _[method].apply(_, args);
         };
     });
     
-    return BaseView;
+    return BackboneBase;
 }));

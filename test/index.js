@@ -4,40 +4,40 @@
         }
     });
     test('class name sanitizer', 1, function() {
-        var view = new BaseView();
+        var view = new BackboneBase.View();
         equal(view.toClassName('aB_Cd-e/f**g'), 'ab-cd-e-f-g', 'class name converted to lowercase and _ replaced with hyphens')
     });
     test('el attribute extensions', 9, function() {
         var expectedModuleId = 'Foo_Bar/Bar-Foo';
         var expectedClassName = 'foo-bar-bar-foo';
-        var view = new BaseView();
+        var view = new BackboneBase.View();
         strictEqual(view.toClassName(expectedModuleId), expectedClassName, 'conversion of string to safe class name');
-        var viewWithModuleId = new BaseView({mid: expectedModuleId, className: 'bar'});
+        var viewWithModuleId = new BackboneBase.View({mid: expectedModuleId, className: 'bar'});
         strictEqual(viewWithModuleId.mid, expectedModuleId, 'Passed in mid is set as instance member');
         strictEqual(viewWithModuleId.$el.attr('data-mid'), expectedModuleId, 'View element data-mid matches view instance mid attribute');
         ok(viewWithModuleId.$el.hasClass(expectedClassName), 'View element class was set to value of data-mid');
         ok(viewWithModuleId.$el.hasClass('bar'), 'View element class argument honored and not destroyed');
 
-        var viewWithModuleIdFunction = new BaseView({
+        var viewWithModuleIdFunction = new BackboneBase.View({
             mid: function() {
                 return expectedModuleId;    
             }
         });
         strictEqual(viewWithModuleIdFunction.$el.attr('data-mid'), expectedModuleId, 'View element data-mid matches view instance mid function return');
 
-        var simpleViewDataCid = new BaseView();
+        var simpleViewDataCid = new BackboneBase.View();
         strictEqual(simpleViewDataCid.cid, simpleViewDataCid.$el.attr('data-cid'), 'View element data-cid matches view instance cid attribute');
     
         var el = document.createElement('div');
-        var simpleView = new BaseView({el: el, mid: 'a'});
+        var simpleView = new BackboneBase.View({el: el, mid: 'a'});
         strictEqual(simpleView.$el.attr('data-mid'), undefined, 'passed in element is not mutated with a data-mid attribute');
         strictEqual(simpleView.$el.attr('data-cid'), undefined, 'passed in element is not mutated with a data-cid attribute');
     });
     test('children', 7, function() {
-        var viewConstructorTest = new BaseView({tagName: 'span'});
+        var viewConstructorTest = new BackboneBase.View({tagName: 'span'});
         ok(!!viewConstructorTest.children, 'constructor creates children instance member');
         
-        var ViewChild = BaseView.extend({
+        var ViewChild = BackboneBase.View.extend({
             initialize: function() {
                this.children.child = new Backbone.View(); 
             }
@@ -47,7 +47,7 @@
         ok(viewPassedChildConstructorTest.children.child instanceof Backbone.View, 'child view created in constructor is correct');
         ok(viewPassedChildConstructorTest.children.child2 instanceof ViewChild, 'child view passed in constructor is correct');
         
-        var ChildView = BaseView.extend({
+        var ChildView = BackboneBase.View.extend({
             tagName: 'span',
             clickedCount: 0,
             events: {
@@ -61,7 +61,7 @@
                 return this;
             }
         });
-        var ParentView = BaseView.extend({
+        var ParentView = BackboneBase.View.extend({
             initialize: function() {
                 this.children.child = new ChildView();
             },
@@ -86,23 +86,23 @@
         });
     });
     test('template', 19, function() {
-        viewNoTemplateTest = new BaseView();
+        viewNoTemplateTest = new BackboneBase.View();
         strictEqual(viewNoTemplateTest.template, '', 'no view template defined defaults to empty string');
 
-        viewTemplateConstructorTest = new BaseView({template: 'a'});
+        viewTemplateConstructorTest = new BackboneBase.View({template: 'a'});
         strictEqual(viewTemplateConstructorTest.template, 'a', 'template passed in constructor');
 
-        var ViewWithTemplate = BaseView.extend({template: 'a'});
+        var ViewWithTemplate = BackboneBase.View.extend({template: 'a'});
         var viewWithTemplate = new ViewWithTemplate();
         strictEqual(viewWithTemplate.template, 'a', 'template in class definition');
 
         viewTemplateConstructorOverrideTest = new ViewWithTemplate({template: 'b'});
         strictEqual(viewTemplateConstructorOverrideTest.template, 'b', 'template based in constructor trumps class definition');
 
-        viewNoRenderTemplate = new BaseView();
+        viewNoRenderTemplate = new BackboneBase.View();
         strictEqual(viewNoRenderTemplate.renderTemplate(), '', 'calling renderTemplate with no-existing template definition returns empty string');
 
-        viewDefaultRender = new BaseView();
+        viewDefaultRender = new BackboneBase.View();
         strictEqual(viewDefaultRender.render().el, viewDefaultRender.el, 'default render method returns a reference to itself');
 
         var viewWithTemplate = new ViewWithTemplate();
