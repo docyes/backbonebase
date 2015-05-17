@@ -118,6 +118,47 @@
             options || (options = {});
             _.extend(this, _.pick(options, modelOptions));
             Backbone.Model.apply(this, arguments);
+        },
+        getter: function(attr) {
+            var getters = _.result(this, 'getters');
+            if (getters) {
+                var method = getters[attr];
+                if (!_.isFunction(method)) {
+                    method = this[method];
+                }
+                if (method) {
+                    return method(attr, this.attributes[attr]);
+                }
+            }
+            return Backbone.Model.prototype.get.apply(this, arguments);
+        },
+        setter: function(key, val, options) {
+            var attr, attrs, setters, unset;
+            if (key == null) {
+                return this;
+            }
+            if (typeof key === 'object') {
+                attrs = key;
+                options = val;
+            } else {
+                (attrs = {})[key] = val;
+            }
+            options || (options = {});
+            if (!options.unset) {
+                var setters = _.result(this, 'setters');
+                for (attr in attrs) {
+                   if (setters) {
+                        var method = setters[attr];
+                        if (!_.isFunction(method)) {
+                            method = this[method];
+                        }
+                        if (method) {
+                            attrs[attr] = method(attr, attrs[attr]);
+                        }
+                    }
+                }
+            }
+            return Backbone.Model.prototype.set.call(this, attrs, options);
         }
     });
     
