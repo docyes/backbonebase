@@ -114,8 +114,15 @@
     });
     
     var Model = BackboneBase.Model = Backbone.Model.extend({
-        //TBD.        
+        constructor: function(attributes, options) {
+            options || (options = {});
+            this.delegateAccessors();
+            _.extend(this, _.pick(options, modelOptions));
+            Backbone.Model.apply(this, arguments);
+        }
     });
+    
+    var modelOptions = ['setters', 'getters'];
       
     return BackboneBase;
 }));
