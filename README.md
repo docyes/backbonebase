@@ -130,14 +130,16 @@ Removes a view from the DOM, and calls stopListening to remove any bound events 
 An extenstion of Backbone.Model. Features for attribute accessors (getters, setters, etc.) and resetting the state of a model.
 
 ##### constructor / initialize `new View([attributes], [options])`
-There are several special options that, if passed, will be attached directly to the model: `setters` and `getters`. If the model defines an initialize function, it will be called when the view is first created. 
+There are several special options that, if passed, will be attached directly to the model: `setters` and `getters`. If the model defines an initialize function, it will be called when the model is first created. 
 
 ##### getters / setters
-If a getters or setters hash is not passed directly, uses this.setters or this.getters as the sources. setters and getters are written in the format {"attribute": "callback"}. The attribute is the `model.attribute` to intercept. The callback may be either the name of a method on the model, or a direct function body. 
+If a getters or setters hash is not passed directly, uses this.setters or this.getters as the sources. setters and getters are written in the format {"attribute": "callback"}. The attribute is the corresponding `model.attribute` that when called with `model.setter` or `model.getter` will attempt to call the associated accessor. The callback may be either the name of a method on the model, or a direct function body. `callback` is called with `(attr, value)` as arguments. Return the value to either set/get.
 
 The getters or setters property may also be defined as a function that returns a getters or setters hash, to make it easier to programmatically define your accessors, as well as inherit them from parent models.
 
-##### getter `view.getter(attribute)`
+##### getter `model.getter(attribute)`
+
+Get the current value of an attribute from the model via the matching `model.getters` hash. If there is no matching `model.getters` hash defaults to `model.get`. 
 
 A model getter that casts an attribute to a boolean might look something like this:
 
@@ -156,7 +158,7 @@ var model = new Model({enabled: "yes"});
 model.getter("enabled");
 ```
 
-##### setter `view.setter(attributes, [options])`
+##### setter `model.setter(attributes, [options])`
 
-##### reset `view.reset(attrs, options)`
+##### reset `model.reset(attrs, options)`
 
