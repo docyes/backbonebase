@@ -130,9 +130,9 @@ Removes a view from the DOM, and calls stopListening to remove any bound events 
 An extenstion of Backbone.Model. Features for attribute accessors (getters, setters, etc.) and resetting the state of a model.
 
 ##### constructor / initialize `new View([attributes], [options])`
-There are several special options that, if passed, will be attached directly to the model: `setters` and `tempgetters`. If the model defines an initialize function, it will be called when the view is first created. 
+There are several special options that, if passed, will be attached directly to the model: `setters` and `getters`. If the model defines an initialize function, it will be called when the view is first created. 
 
-##### getters / setters `view.getters / view.setters`
+##### getters / setters
 If a getters or setters hash is not passed directly, uses this.setters or this.getters as the sources. setters and getters are written in the format {"attribute": "callback"}. The callback may be either the name of a method on the model, or a direct function body. 
 
 ##### getter `view.getter(attribute)`
