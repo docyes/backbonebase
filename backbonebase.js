@@ -167,7 +167,7 @@
         reset: function(attrs, options) {
             options || (options={});
             this.clear({silent: true});
-            this[(options.setters) ? 'setters': 'set'](attrs, options);
+            this[(options.setter) ? 'setter': 'set'](attrs, options);
             return this;
         }
 
