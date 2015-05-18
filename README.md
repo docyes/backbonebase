@@ -160,5 +160,24 @@ model.getter("enabled");
 
 ##### setter `model.setter(attributes, [options])`
 
+Set a hash of attributes (one or many) on the model via matching `model.setters` hash entries. If any of the attributes change the model's state, a "change" event will be triggered on the model. If there is no matching `model.setters` hash defaults to `model.set`.
+
+A model setter that converts a boolean to a string attribute value might look something like this:
+
+```js
+var Model = BackboneBase.Model.extend({
+    "setters": {
+        "enabled": function(attr, value) {
+            if (value===true) {
+                return 'yes';
+            }
+            return 'no';
+        }
+    }
+});
+var model = new Model();
+model.setter('enabled', true);
+```
+
 ##### reset `model.reset(attrs, options)`
 
