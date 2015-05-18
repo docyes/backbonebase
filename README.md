@@ -181,6 +181,6 @@ model.setter("enabled", true);
 
 ##### reset `model.reset(attrs, options)`
 
-Clears a model silently and subsquently set new attributes. Useful for when you don't want a double set of change events and the defaults are not sufficient. options proxies to `model.set`. 
+Clear a model silently and subsquently set new attributes. Useful for when you don't want a double set of change events and the defaults are not sufficient. options proxies to `model.set`. 
 
 
