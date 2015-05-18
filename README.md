@@ -126,4 +126,12 @@ Traverse a n-level deep tree of `view.children` starting from the top and workin
 
 Removes a view from the DOM, and calls stopListening to remove any bound events that the view has listenTo'd. Aditionally invokes remove on all `view.children`.
 
+## BackboneBase.Model
+An extenstion of Backbone.Model. Features for attribute accessors (getters, setters, etc.) and resetting the state of a model.
+
+##### getter `view.getter(attribute)`
+
+##### setter `view.setter(attributes, [options])`
+
+##### reset `view.reset(attrs, options)`
 
