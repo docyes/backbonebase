@@ -169,14 +169,14 @@ var Model = BackboneBase.Model.extend({
     "setters": {
         "enabled": function(attr, value) {
             if (value===true) {
-                return 'yes';
+                return "yes";
             }
-            return 'no';
+            return "no";
         }
     }
 });
 var model = new Model();
-model.setter('enabled', true);
+model.setter("enabled", true);
 ```
 
 ##### reset `model.reset(attrs, options)`
