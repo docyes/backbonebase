@@ -137,13 +137,15 @@ If a getters or setters hash is not passed directly, uses this.setters or this.g
 
 The getters or setters property may also be defined as a function that returns a getters or setters hash, to make it easier to programmatically define your accessors, as well as inherit them from parent models.
 
-A model that casts an attribute to a boolean might look something like this:
+##### getter `view.getter(attribute)`
+
+A model getter that casts an attribute to a boolean might look something like this:
 
 ```js
 var Model = BackboneBase.Model.extend({
     "getters": {
         "enabled": function(attr, value) {
-            if (value=='yes') {
+            if (value==="yes") {
                 return true;
             }
             return false;
@@ -152,8 +154,7 @@ var Model = BackboneBase.Model.extend({
 });
 var model = new Model({enabled: "yes"});
 model.getter("enabled");
-
-##### getter `view.getter(attribute)`
+```
 
 ##### setter `view.setter(attributes, [options])`
 
