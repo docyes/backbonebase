@@ -159,6 +159,11 @@
                 }
             }
             return Backbone.Model.prototype.set.call(this, attrs, options);
+        },
+        reset: function(attrs, options) {
+            this.clear({silent: true});
+            this.set(attrs, options);
+            return this;
         }
     });
     

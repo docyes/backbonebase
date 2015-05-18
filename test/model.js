@@ -96,4 +96,14 @@
         equal(model.setter('foo', 'bar').get('foo'), 'bar', 'setters passed in via constructor are honored');
     });
 
+    test('reset', 3, function() {
+        var model = new BackboneBase.Model({a: 'a', b: 'b'});
+        var spyOnAttrChange = sinon.spy();
+        model.on('change:a change:b', spyOnAttrChange);
+        model.reset({a: 'a2'});
+        strictEqual(model.get('a'), 'a2', 'first attribute set to new value');
+        strictEqual(model.get('b'), undefined, 'second attribute unset');
+        equal(spyOnAttrChange.callCount, 1, 'was only called once');
+    });
+
 })();
