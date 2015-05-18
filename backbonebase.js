@@ -114,11 +114,13 @@
     });
     
     var Model = BackboneBase.Model = Backbone.Model.extend({
+        
         constructor: function(attributes, options) {
             options || (options = {});
             _.extend(this, _.pick(options, modelOptions));
             Backbone.Model.apply(this, arguments);
         },
+        
         getter: function(attr) {
             var getters = _.result(this, 'getters');
             if (getters) {
@@ -132,6 +134,7 @@
             }
             return Backbone.Model.prototype.get.apply(this, arguments);
         },
+        
         setter: function(key, val, options) {
             var attr, attrs, setters, unset;
             if (key == null) {
@@ -160,11 +163,14 @@
             }
             return Backbone.Model.prototype.set.call(this, attrs, options);
         },
+        
         reset: function(attrs, options) {
+            options || (options={});
             this.clear({silent: true});
-            this.set(attrs, options);
+            this[(options.setters) ? 'setters': 'set'](attrs, options);
             return this;
         }
+
     });
     
     var modelOptions = ['setters', 'getters'];
