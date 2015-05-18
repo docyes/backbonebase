@@ -133,9 +133,25 @@ An extenstion of Backbone.Model. Features for attribute accessors (getters, sett
 There are several special options that, if passed, will be attached directly to the model: `setters` and `getters`. If the model defines an initialize function, it will be called when the view is first created. 
 
 ##### getters / setters
-If a getters or setters hash is not passed directly, uses this.setters or this.getters as the sources. setters and getters are written in the format {"attribute": "callback"}. The callback may be either the name of a method on the model, or a direct function body. 
+If a getters or setters hash is not passed directly, uses this.setters or this.getters as the sources. setters and getters are written in the format {"attribute": "callback"}. The attribute is the `model.attribute` to intercept. The callback may be either the name of a method on the model, or a direct function body. 
 
 The getters or setters property may also be defined as a function that returns a getters or setters hash, to make it easier to programmatically define your accessors, as well as inherit them from parent models.
+
+A model that casts an attribute to a boolean might look something like this:
+
+```js
+var Model = BackboneBase.Model.extend({
+    "getters": {
+        "enabled": function(attr, value) {
+            if (value=='yes') {
+                return true;
+            }
+            return false;
+        }
+    }
+});
+var model = new Model({enabled: "yes"});
+model.getter("enabled");
 
 ##### getter `view.getter(attribute)`
 
