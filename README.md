@@ -135,6 +135,8 @@ There are several special options that, if passed, will be attached directly to 
 ##### getters / setters
 If a getters or setters hash is not passed directly, uses this.setters or this.getters as the sources. setters and getters are written in the format {"attribute": "callback"}. The callback may be either the name of a method on the model, or a direct function body. 
 
+The getters or setters property may also be defined as a function that returns a getters or setters hash, to make it easier to programmatically define your accessors, as well as inherit them from parent models.
+
 ##### getter `view.getter(attribute)`
 
 ##### setter `view.setter(attributes, [options])`
