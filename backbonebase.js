@@ -175,6 +175,20 @@
     });
     
     var modelOptions = ['setters', 'getters'];
-      
+    
+    var Model = BackboneBase.Collection = Backbone.Collection.extend({
+        
+        duplicate: function() {
+            return new this.constructor(this.invoke('clone'));
+        },
+
+        reverse: function(options) {
+            options || (options = {});
+            var models = [].concat(this.models).reverse();
+            this.reset(models, options);
+        }
+        
+    });
+    
     return BackboneBase;
 }));
