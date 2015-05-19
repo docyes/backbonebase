@@ -129,7 +129,7 @@ Removes a view from the DOM, and calls stopListening to remove any bound events 
 ## BackboneBase.Model
 An extenstion of Backbone.Model. Features for attribute accessors (getters, setters, etc.) and resetting the state of a model.
 
-##### constructor / initialize `new View([attributes], [options])`
+##### constructor / initialize `new Model([attributes], [options])`
 There are several special options that, if passed, will be attached directly to the model: `setters` and `getters`. If the model defines an initialize function, it will be called when the model is first created. 
 
 ##### getters / setters
