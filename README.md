@@ -133,11 +133,11 @@ An extenstion of Backbone.Model. Features for attribute accessors (getters, sett
 There are several special options that, if passed, will be attached directly to the model: `setters` and `getters`. If the model defines an initialize function, it will be called when the model is first created. 
 
 ##### getters / setters
-If a getters or setters hash is not passed directly, uses this.setters or this.getters as the sources. setters and getters are written in the format {"attribute": "callback"}. The attribute is the corresponding `model.attribute` that when called with `model.setter` or `model.getter` will execute the callback. The callback may be either the name of a method on the model, or a direct function body. `callback` is called with `(attr, value)` as arguments. Return the value to either set/get.
+If a getters or setters hash is not passed directly, uses this.setters or this.getters as the sources. setters and getters are written in the format {"attribute": "callback"}. The attribute is the corresponding `model.attribute` that when called with `model.setter` or `model.getter` will execute the callback. The callback may be either the name of a method on the model, or a direct function body. `callback` is called with `(attr, value), options` as arguments. Return the value to either set/get.
 
 The getters or setters property may also be defined as a function that returns a getters or setters hash, to make it easier to programmatically define your accessors, as well as inherit them from parent models.
 
-##### getter `model.getter(attribute)`
+##### getter `model.getter(attribute, [options])`
 
 Get the current value of an attribute from the model via the matching `model.getters` hash. If there is no matching `model.getters` hash defaults to `model.get`. 
 
