@@ -1,6 +1,6 @@
 # BackboneBase
 *"All your base are belong to us"*
-A framework-agnostic complimentary set of Backbone.View and Backbone.Model extensions providing flexible convenience idioms and utilities.
+A framework-agnostic complimentary set of Backbone.View, Backbone.Model and Backbone.View extensions providing flexible convenience idioms and utilities.
 
 ## BackboneBase.View
 An extenstion of Backbone.View. Features for templating (compiling, caching, etc.), introspection, hieararchical views and consistent class name derivation.
@@ -183,4 +183,11 @@ model.setter("enabled", true);
 
 Clear a model silently and subsquently set new attributes. Useful for when you don't want a double set of change events and the defaults are not sufficient. `options` are proxied to `model.set` while `{setter: true}` will use `model.setter`.
 
+## BackboneBase.Collection
+
+An extenstion of Backbone.Collection. Features for sorting and duplication.
+
+##### duplicate `collection.duplicate(options)`
+
+##### reverse `collection.reverse()`
 
