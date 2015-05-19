@@ -121,7 +121,8 @@
             Backbone.Model.apply(this, arguments);
         },
         
-        getter: function(attr) {
+        getter: function(attr, options) {
+            options || (options = {});
             var getters = _.result(this, 'getters');
             if (getters) {
                 var method = getters[attr];
@@ -129,7 +130,7 @@
                     method = this[method];
                 }
                 if (method) {
-                    return method(attr, this.attributes[attr]);
+                    return method(attr, this.attributes[attr], options);
                 }
             }
             return Backbone.Model.prototype.get.apply(this, arguments);
@@ -156,7 +157,7 @@
                             method = this[method];
                         }
                         if (method) {
-                            attrs[attr] = method(attr, attrs[attr]);
+                            attrs[attr] = method(attr, attrs[attr], options);
                         }
                     }
                 }

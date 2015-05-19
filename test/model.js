@@ -4,18 +4,21 @@
         }
     });
 
-    test('getters', 6, function() {
+    test('getters', 7, function() {
         var model = new BackboneBase.Model();
         strictEqual(model.getter('foo'), undefined, 'no attribute returns undefined'); 
        
         var Model = BackboneBase.Model.extend({
             getters: {
-                num: function(attr, value) {
+                num: function(attr, value, options) {
+                    if (options.ignore) {
+                        return -1;
+                    }
                     return parseInt(value, 10);
                 },
                 bool: 'bool'
             },
-            bool: function(attr, value) {
+            bool: function(attr, value, options) {
                 if (value==1) {
                     return true;
                 }
@@ -24,6 +27,7 @@
         });
         var model = new Model({num: '10', str: 'abcd', bool: 1});
         strictEqual(model.getter('num'), 10, 'attribute with accessor was invoked with expected value');
+        strictEqual(model.getter('num', {ignore: true}), -1, 'attribute options are passed down');
         strictEqual(model.getter('str'), 'abcd', 'attribute with no accessor preserves value');
         strictEqual(model.getter('bool'), true, 'attribute with named accessor was invoked with expected value');
     
@@ -50,13 +54,16 @@
         equal(model.getter('foo'), 'bar', 'getters passed in via constructor are honored');
     });
 
-    test('setters', 6, function() {
+    test('setters', 7, function() {
         var model = new BackboneBase.Model();
         strictEqual(model.setter('foo', 'bar').get('foo'), 'bar', 'no matching setter sets attribute to expected value.'); 
 
         var Model = BackboneBase.Model.extend({
             setters: {
-                num: function(attr, value) {
+                num: function(attr, value, options) {
+                    if (options.ignore) {
+                        return -1;
+                    }
                     return parseInt(value, 10);
                 },
                 bool: 'bool'
@@ -70,6 +77,8 @@
         });        
         var model = new Model();
         strictEqual(model.setter('num', '10').get('num'), 10, 'attribute with accessor was invoked with expected value');
+         strictEqual(model.setter('num', '10', {ignore: true}).get('num'), -1, 'options are respected');
+        
         strictEqual(model.setter('str', 'abcd').get('str'), 'abcd', 'attribute with no accessor preserves value');
         strictEqual(model.setter('bool', 1).get('bool'), true, 'attribute with named accessor was invoked with expected value');
  
