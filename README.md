@@ -1,6 +1,6 @@
 # BackboneBase
 *"All your base are belong to us"*
-A framework-agnostic complimentary set of Backbone.View, Backbone.Model and Backbone.View extensions providing flexible convenience idioms and utilities.
+A framework-agnostic complimentary set of Backbone.View, Backbone.Model and Backbone.Collection extensions providing flexible convenience idioms and utilities.
 
 ## BackboneBase.View
 An extenstion of Backbone.View. Features for templating (compiling, caching, etc.), introspection, hieararchical views and consistent class name derivation.
