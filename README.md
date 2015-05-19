@@ -193,4 +193,4 @@ Returns a new instance of the collection with a new list of models (model refere
 
 ##### reverse `collection.reverse()`
 
-Reverses the order of the internally stored collection.
+Reverses the order of the internally stored array of models.
