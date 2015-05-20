@@ -178,8 +178,8 @@
     
     var Model = BackboneBase.Collection = Backbone.Collection.extend({
         
-        duplicate: function() {
-            return new this.constructor(this.invoke('clone'));
+        duplicate: function(options) {
+            return new this.constructor(this.invoke('clone'), options);
         },
 
         reverse: function(options) {
