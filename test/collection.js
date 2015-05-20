@@ -15,4 +15,10 @@
         strictEqual(collectionDupe.comparator, 'index', 'passed in option was respected'); 
     });
 
+    test('reverse', 2, function() {
+        var collection = new BackboneBase.Collection([{a: 'a1'}, {a: 'a2'}]);
+        collection.reverse();
+        equal(collection.at(0).get('a'), 'a2', 'first model has been reversed');
+        equal(collection.at(1).get('a'), 'a1', 'second model has been reversed');
+    });
 })();
