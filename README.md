@@ -189,7 +189,7 @@ An extenstion of Backbone.Collection. Features for sorting and duplication.
 
 ##### duplicate `collection.duplicate([options])`
 
-Returns a new instance of the collection with a new list of models (model references are not maintained). Analogous to a deep `collection.clone` operation. options can also be passed which will map to the second argument to the `Collection` constructor. 
+Returns a new instance of the collection with a new list of models (model references are not maintained). Analogous to a deep `collection.clone` operation. options can also be passed which will map to the second argument in `Collection` constructor. 
 
 ##### reverse `collection.reverse()`
 
