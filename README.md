@@ -205,3 +205,5 @@ Aborts an in-flight request if present; `object.poppedFetch`. Calls an `abort` f
 
 ##### stackFetch `object.stackFetch([options])`
 
+Creates and makes a request if no in-flight request `object.poppedFetch` exists. If an in-flight request exists captures the functions arguments adding it to the `object.stackedFetch` stack. Note the stack has a size of 1 and is 'last in, last out'. options are passed directly to `object.fetch`. 
+
