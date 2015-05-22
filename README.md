@@ -197,7 +197,7 @@ Reverses the order of the internally stored array of models.
 
 ## BackboneBase.Request
 
-Request is module that can be mixed in to any Model or Collection object, giving the object the ability to manage a stack of requests; the stack has a bounded capacity of one. If the stack is full, new additions will supersede the previous item from the stack. When a request is complete and an item is in the stack, the pop operation will result in an empty stack.
+Request is a module that can be mixed in to any Model or Collection object, giving the object the ability to manage a stack of requests; the stack has a bounded capacity of one. If the stack is full, new additions will supersede the previous item from the stack. When a request is complete and an item is in the stack, the pop operation will result in an empty stack.
 
 ##### Catalog of Events
 
