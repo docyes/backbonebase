@@ -25,6 +25,43 @@
     // Current version of the library.
     BackboneBase.VERSION = '0.0.0';
 
+    var Request = Backbone.Request = {
+        abortFetch: function(options) {
+            options || (options={});
+            if (this.poppedFetch) {
+                if (options.halt) {
+                    delete this.stackedFetch;
+                }
+                this.poppedFetch.abort();
+            }
+        },
+        stackFetch: function(options) {
+            if (this.poppedFetch) {
+                this.trigger('stacked', options);
+                this.stackedFetch = arguments;
+                return;
+            }
+            options || (options={});
+            var success = options.success;
+            var error = options.error;
+            options.success = function() {
+                delete this.poppedFetch;
+                if (success) {
+                    success.apply(null, arguments);
+                }
+                
+            };
+            options.error = function() {
+                delete this.poppedFetch;
+                if (error) {
+                    error.apply(null, arguments);
+                }
+            };
+            this.poppedFetch = fetch(options);
+            return;
+        }
+    };
+
     var View = BackboneBase.View = Backbone.View.extend({
             
         constructor: function(options) {
@@ -176,7 +213,9 @@
     
     var modelOptions = ['setters', 'getters'];
     
-    var Model = BackboneBase.Collection = Backbone.Collection.extend({
+    _.extend(Model.prototype, Request);
+
+    var Collection = BackboneBase.Collection = Backbone.Collection.extend({
         
         duplicate: function(options) {
             return new this.constructor(this.invoke('clone'), options);
@@ -189,6 +228,8 @@
         }
         
     });
-    
+
+    _.extend(Collection.prototype, Request);
+
     return BackboneBase;
 }));
