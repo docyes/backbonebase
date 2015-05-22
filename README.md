@@ -203,7 +203,7 @@ Request is a module that can be mixed in to any Model or Collection object, givi
 
 Here's the complete list of built-in BackboneBase.Request events, with arguments
 
-* **"stacked"** when a `object.stackFetch` call has been stacked in the queue is in-flight (an outgoing fetch; `object.poppedFetch).
+* **"stacked"** when a `object.stackFetch` call has been stacked in the queue due to an outgoing fetch (`object.poppedFetch`).
 
 ##### abortFetch `object.abortFetch([options])`
 
