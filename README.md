@@ -217,3 +217,5 @@ Creates and makes a request if no in-flight request exists. If an in-flight requ
 
 ##### dequeueFetch `object.dequeueFetch()`
 
+Remove the next set of fetch arguments in the queue and create and make a request. Stops an in-flight request if present. Is a no-op if the queue is empty leaving any in-flight requests out-bound.
+
