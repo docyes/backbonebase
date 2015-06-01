@@ -213,7 +213,23 @@ Stops an in-flight request if present and clears the existing queue of fetches.
 
 ##### enqueueFetch `object.enqueueFetch([options])`
 
+In general a server request is non-deterministic; when making more than one request on a model or collection always use `object.enqueueFetch`.
+
 Creates and makes a request if no in-flight request exists. If an in-flight request exists captures the functions arguments adding it to the fetch queue. Note the queue has a default size of 1 and is a 'first in, first out' data structure. options are passed directly to `object.fetch`. 
+
+```js
+var Tweets = BackboneBase.Collection.extend({
+    url: "https://api.twitter.com/1.1/search/tweets.json"
+});
+var tweets = new Tweets();
+setInterval(function() {
+    tweets.enqueueFetch({
+        data: {
+            q: "backbonejs"
+        }
+    });
+}, 10000);
+```
 
 ##### dequeueFetch `object.dequeueFetch()`
 
