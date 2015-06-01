@@ -217,6 +217,8 @@ In general a server request is non-deterministic; when making more than one requ
 
 Creates and makes a request if no in-flight request exists. If an in-flight request exists captures the functions arguments adding it to the fetch queue. Note the queue has a default size of 1 and is a 'first in, first out' data structure. options are passed directly to `object.fetch`. 
 
+If the queue is full, the last set of fetch arguments in the queue will be replaced with the callees new arguments.
+
 ```js
 var Tweets = BackboneBase.Collection.extend({
     url: "https://api.twitter.com/1.1/search/tweets.json"
