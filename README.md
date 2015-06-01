@@ -211,7 +211,7 @@ Here's the complete list of built-in BackboneBase.Request events, with arguments
 
 Stops an in-flight request if present and clears the existing queue of fetches. 
 
-##### enqueueFetch `object.pushFetch([options])`
+##### enqueueFetch `object.enqueueFetch([options])`
 
 Creates and makes a request if no in-flight request exists. If an in-flight request exists captures the functions arguments adding it to the fetch queue. Note the queue has a default size of 1 and is a 'first in, first out' data structure. options are passed directly to `object.fetch`. 
 
