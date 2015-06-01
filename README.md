@@ -197,19 +197,23 @@ Reverses the order of the internally stored array of models.
 
 ## BackboneBase.Request
 
-Request is a module that can be mixed in to any Model or Collection object (defaults in `BackboneBase.Model` and `BackboneBase.Collection`), giving the object the ability to manage a stack of requests; the stack has a bounded capacity of one. If the stack is full, new additions will supersede the previous item from the stack. When a request is complete and an item is in the stack, the pop operation will result in an empty stack.
+Request is a module that can be mixed in to any Model or Collection object (defaults in `BackboneBase.Model` and `BackboneBase.Collection`), giving the object the ability to manage a queue of requests; the queue by default has a bounded capacity of one. 
 
 ##### Catalog of Events
 
 Here's the complete list of built-in BackboneBase.Request events, with arguments
 
-* **"stacked"** when an `object.stackFetch` call has been stacked in the queue due to an outgoing fetch (`object.poppedFetch`).
+* **"request:dequeued"** (model_or_collection, xhr, options) - when a fetch has been pulled from the queue and a request is made.
 
-##### abortFetch `object.abortFetch([options])`
+* **"request:enqueued"** (model_or_collection, options) - when a fetch has been placed in the queue as a result of another request being in-flight. 
 
-Aborts an in-flight request if present; `object.poppedFetch`. Calls an `abort` function on the returned object from `Backbone.sync`.
+##### clearFetch `object.clearFetch()`
 
-##### stackFetch `object.stackFetch([options])`
+Stops an in-flight request if present and clears the existing queue of fetches. 
 
-Creates and makes a request if no in-flight request `object.poppedFetch` exists. If an in-flight request exists captures the functions arguments adding it to the `object.stackedFetch` stack. Note the stack has a size of 1 and is 'last in, last out'. options are passed directly to `object.fetch`. 
+##### enqueueFetch `object.pushFetch([options])`
+
+Creates and makes a request if no in-flight request exists. If an in-flight request exists captures the functions arguments adding it to the fetch queue. Note the queue has a default size of 1 and is a 'first in, first out' data structure. options are passed directly to `object.fetch`. 
+
+##### dequeueFetch `object.dequeueFetch()`
 

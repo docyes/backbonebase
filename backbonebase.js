@@ -26,40 +26,56 @@
     BackboneBase.VERSION = '0.0.0';
 
     var Request = Backbone.Request = {
-        abortFetch: function(options) {
-            options || (options={});
-            if (this.poppedFetch) {
-                if (options.halt) {
-                    delete this.stackedFetch;
-                }
-                this.poppedFetch.abort();
+
+        _abortFetch: function(sync) {
+            if (_.isFunction(sync.state) && sync.state()==='pending' && _.isFunction(sync.abort)) {
+                sync.abort();
             }
         },
-        stackFetch: function(options) {
-            if (this.poppedFetch) {
-                this.trigger('stacked', options);
-                this.stackedFetch = arguments;
+
+        enqueueFetch: function(options) {
+            options || (options={});
+            var fetches = this._fetches || (this._fetches = []);
+            var maxFetch = this._maxFetch || (this._maxFetch = 1);
+            options.success = wrapEnqueue(options.success, ctx);
+            options.error = wrapEnqueue(options.error, ctx);
+            fetches.push(options);
+            fetches.splice(0, fetches.length - maxFetch);
+            if (!this.pendingFetch) {
+                var fetch = this.dequeueFetch();
+                this.pendingFetch = this.fetch(fetch);
+                this.trigger('request:dequeued', this, this.pendingFetch, fetch);
                 return;
             }
-            options || (options={});
-            var success = options.success;
-            var error = options.error;
-            options.success = function() {
-                delete this.poppedFetch;
-                if (success) {
-                    success.apply(null, arguments);
+            this.trigger('request:enqueued', this, options);
+        },
+        
+        dequeueFetch: function() {
+            var fetches = this._fetches || (this._fetches = []);
+            var fetch = fetches.pop();
+            if (fetch) {
+                if (this.pendingFetch) {
+                    this._abortFetch(this.pendingFetch);
                 }
-                
-            };
-            options.error = function() {
-                delete this.poppedFetch;
-                if (error) {
-                    error.apply(null, arguments);
-                }
-            };
-            this.poppedFetch = fetch(options);
-            return;
+                this.pendingFetch = this.fetch(fetch);
+                this.trigger('request:dequeued', this, this.pendingFetch, fetch);
+            }
+        },
+        
+        clearFetch: function() {
+            this._fetches = [];
+            if (this.pendingFetch) {
+                this._abortFetch(this.pendingFetch);
+            }
         }
+
+    };
+
+    var wrapEnqueue = function(callback, ctx) {
+        if (callback) {
+            callback.apply(null, arguments);
+        }
+        ctx.dequeueFetch();
     };
 
     var View = BackboneBase.View = Backbone.View.extend({
