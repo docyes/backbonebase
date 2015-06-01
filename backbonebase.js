@@ -25,7 +25,7 @@
     // Current version of the library.
     BackboneBase.VERSION = '0.0.0';
 
-    var Request = Backbone.Request = {
+    var Request = BackboneBase.Request = {
 
         _abortFetch: function(sync) {
             if (_.isFunction(sync.state) && sync.state()==='pending' && _.isFunction(sync.abort)) {
