@@ -37,14 +37,12 @@
             options || (options={});
             var fetches = this._fetches || (this._fetches = []);
             var maxFetch = this._maxFetch || (this._maxFetch = 1);
-            options.success = wrapEnqueue(options.success, ctx);
-            options.error = wrapEnqueue(options.error, ctx);
+            options.success = wrapEnqueue(options.success, this);
+            options.error = wrapEnqueue(options.error, this);
             fetches.push(options);
             fetches.splice(0, fetches.length - maxFetch);
             if (!this.pendingFetch) {
-                var fetch = this.dequeueFetch();
-                this.pendingFetch = this.fetch(fetch);
-                this.trigger('request:dequeued', this, this.pendingFetch, fetch);
+                this.dequeueFetch();
                 return;
             }
             this.trigger('request:enqueued', this, options);
