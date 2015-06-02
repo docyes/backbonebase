@@ -85,6 +85,7 @@
             equal(child, view.children.child, 'is expected child');
         });
     });
+    /*
     test('template', 19, function() {
         viewNoTemplateTest = new BackboneBase.View();
         strictEqual(viewNoTemplateTest.template, '', 'no view template defined defaults to empty string');
@@ -144,5 +145,6 @@
         strictEqual(spyOnRenderTemplateSpy.args[0][2][0], 'foo', 'renderTemplate called with matching first argument');
         strictEqual(spyOnRenderTemplateSpy.args[0][2][1], 'bar', 'renderTemplate called with matching second argument');
         clock.restore();
+        */
     });
 })();
