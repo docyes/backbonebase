@@ -70,10 +70,12 @@
     };
 
     var wrapEnqueue = function(callback, ctx) {
-        if (callback) {
-            callback.apply(null, arguments);
-        }
-        ctx.dequeueFetch();
+        return function() {
+            if (callback) {
+                callback.apply(null, arguments);
+            }
+            ctx.dequeueFetch();
+        };
     };
 
     var View = BackboneBase.View = Backbone.View.extend({
