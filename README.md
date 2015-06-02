@@ -1,4 +1,4 @@
-# BackboneBase ![alt text](https://api.travis-ci.org/docyes/backbonebase.png?branch=master "Build Status")
+# BackboneBase 
 *"All your base are belong to us"*
 A framework-agnostic complimentary set of Backbone.View, Backbone.Model, Backbone.Collection and Fetch extensions providing flexible convenience idioms and utilities.
 
