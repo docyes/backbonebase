@@ -85,7 +85,6 @@
             equal(child, view.children.child, 'is expected child');
         });
     });
-    /*
     test('template', 19, function() {
         viewNoTemplateTest = new BackboneBase.View();
         strictEqual(viewNoTemplateTest.template, '', 'no view template defined defaults to empty string');
@@ -109,7 +108,6 @@
         var viewWithTemplate = new ViewWithTemplate();
         strictEqual(viewWithTemplate.renderTemplate(), 'a', 'calling renderTemplate with an existing template is callable and returns an expected value');
 
-   
         var viewWithTemplate = new ViewWithTemplate();
         var spyOnRenderTemplateSpy = sinon.spy();
         viewWithTemplate.on('render:template', spyOnRenderTemplateSpy);
@@ -130,8 +128,7 @@
         ok(spyOnRenderTemplateSpy.calledWithMatch(viewWithTemplate, 'a'), 'render:template callback called with expected arguments');
         strictEqual(spyOnRenderTemplateSpy.args[0][2][0], 'foo', 'renderTemplate called with matching first argument');
         strictEqual(spyOnRenderTemplateSpy.args[0][2][1], 'bar', 'renderTemplate called with matching second argument');
-        clock.restore();
-
+        
         var viewWithTemplate = new ViewWithTemplate();
         var spyOnRenderTemplateSpy = sinon.spy();
         var clock = sinon.useFakeTimers();
@@ -144,7 +141,5 @@
         ok(spyOnRenderTemplateSpy.calledWithMatch(viewWithTemplate, 'a'), 'render:template callback called with expected arguments');
         strictEqual(spyOnRenderTemplateSpy.args[0][2][0], 'foo', 'renderTemplate called with matching first argument');
         strictEqual(spyOnRenderTemplateSpy.args[0][2][1], 'bar', 'renderTemplate called with matching second argument');
-        clock.restore();
     });
-    */
 })();
