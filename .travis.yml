@@ -1,1 +1,1 @@
-script: phantomjs test/vendor/runqunit.js test/index.html
+script: phantomjs --local-to-remote-url-access=true test/vendor/runqunit.js test/index.html
