@@ -145,6 +145,6 @@
         strictEqual(spyOnRenderTemplateSpy.args[0][2][0], 'foo', 'renderTemplate called with matching first argument');
         strictEqual(spyOnRenderTemplateSpy.args[0][2][1], 'bar', 'renderTemplate called with matching second argument');
         clock.restore();
-        */
     });
+    */
 })();
