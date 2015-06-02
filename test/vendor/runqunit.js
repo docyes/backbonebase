@@ -54,9 +54,9 @@ page.open(system.args[0], function(status){
     } else {
         waitFor(function(){
             return page.evaluate(function(){
-                console.log(document.body.innerHTML)
                 var el = document.getElementById('qunit-testresult');
                 if (el && el.innerText.match('completed')) {
+                    console.log(document.body.innerHTML);
                     return true;
                 }
                 return false;
