@@ -1,6 +1,8 @@
 # BackboneBase ![alt text](https://api.travis-ci.org/docyes/backbonebase.png?branch=master "Build Status") 
 *"All your base are belong to us"*
-A framework-agnostic complimentary set of Backbone.View, Backbone.Model, Backbone.Collection and Fetch extensions providing flexible convenience idioms and utilities.
+A framework-agnostic complimentary set of Backbone.View, Backbone.Model, Backbone.Collection and Fetch extensions providing flexible convenience idioms and utilities. BackboneBase attempts to not override Backbone methods unless absolutely necessary; constructor/intialize hooks and/or encouraged by the core Backbone source.
+
+This library is the result of observations and thoughts from a very large Backbone deployment; 1200 Views, 260 Models, 120 Collections and 50 Routers having 150,000 LOC (non-optimized).
 
 ## BackboneBase.View
 An extenstion of Backbone.View. Features for templating (compiling, caching, etc.), introspection, hieararchical views and consistent class name derivation.
