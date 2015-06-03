@@ -15,14 +15,17 @@
         }
     });
 
-    test('enqueue', 4, function() {
+    test('enqueue', 6, function() {
         var collection = new this.Collection();
         collection.enqueueFetch({
-            data: {req: 1},
+            data: {req: 1}
         });
         collection.enqueueFetch({
-            data: {req: 2}}
-        );        
+            data: {req: 2}
+        });
+        collection.enqueueFetch({
+            data: {req: 3}
+        });
         equal(this.requests.length, 1, 'only one request other in queue');
         this.requests[0].respond(
             200, 
@@ -37,6 +40,8 @@
             '[{ "id": 2, "comment": "Hello world" }]'
         );
         equal(collection.at(0).id, 2, 'collection first item has expected id');
+        equal(this.requests[0].url, 'https://api.github.com/repos/docyes/backbonebase/commits?req=1', 'first request was from the first enqueue call');
+        equal(this.requests[1].url, 'https://api.github.com/repos/docyes/backbonebase/commits?req=3', 'second request was from the last enqueue call');
     });
 
 })();
