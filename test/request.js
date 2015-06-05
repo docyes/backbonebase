@@ -15,7 +15,7 @@
         }
     });
 
-    test('enqueue', 11, function() {
+    test('enqueue', 16, function() {
         var collection = new this.Collection();
         var success = sinon.spy();
         var error = sinon.spy();
@@ -25,10 +25,14 @@
             error: error
         });
         collection.enqueueFetch({
-            data: {req: 2}
+            data: {req: 2},
+            success: success,
+            error: error
         });
         collection.enqueueFetch({
-            data: {req: 3}
+            data: {req: 3},
+            success: success,
+            error: error
         });
         equal(this.requests.length, 1, 'only one request other in queue');
         this.requests[0].respond(
@@ -49,6 +53,11 @@
             '[{ "id": 2, "comment": "Hello world" }]'
         );
         equal(collection.at(0).id, 2, 'collection first item has expected id');
+        equal(success.callCount, 2, 'success callback was called');
+        equal(success.getCall(1).args[0], collection, 'first success argument is collection');  
+        deepEqual(success.getCall(1).args[1], [{ "id": 2, "comment": "Hello world" }], 'response is as expected');
+        deepEqual(success.getCall(1).args[2].data, {req: 3}, 'options were proxied to callback');
+        equal(error.callCount, 0, 'error callback was not called');
         equal(this.requests[0].url, 'https://api.github.com/repos/docyes/backbonebase/commits?req=1', 'first request was from the first enqueue call');
         equal(this.requests[1].url, 'https://api.github.com/repos/docyes/backbonebase/commits?req=3', 'second request was from the last enqueue call');
     });
