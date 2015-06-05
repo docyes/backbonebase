@@ -15,10 +15,14 @@
         }
     });
 
-    test('enqueue', 6, function() {
+    test('enqueue', 11, function() {
         var collection = new this.Collection();
+        var success = sinon.spy();
+        var error = sinon.spy();
         collection.enqueueFetch({
-            data: {req: 1}
+            data: {req: 1},
+            success: success,
+            error: error
         });
         collection.enqueueFetch({
             data: {req: 2}
@@ -34,6 +38,11 @@
         );
         equal(this.requests.length, 2, 'two requests as other completed');
         equal(collection.at(0).id, 1, 'collection first item has expected id');
+        equal(success.callCount, 1, 'success callback was called');
+        equal(success.getCall(0).args[0], collection, 'first success argument is collection');  
+        deepEqual(success.getCall(0).args[1], [{ "id": 1, "comment": "Hello world" }], 'response is as expected');
+        deepEqual(success.getCall(0).args[2].data, {req: 1}, 'options were proxied to callback');
+        equal(error.callCount, 0, 'error callback was not called');
         this.requests[1].respond(
             200, 
             {"Content-Type": "application/json" },
